@@ -1,21 +1,24 @@
 @import "~slick-carousel/slick/slick.css"; 
 @import "~slick-carousel/slick/slick-theme.css";
 
-.carousel-parent {
+.banner-container {
 
-    width: 100%;
-    overflow: hidden;
+    height: 70vh;
+    background-size: cover;
 }
 
-.carousel-container {
+.banner-overlay {
 
-    height: 80vh;
-    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.644);
+    width: 100%;
+    height: 100%;
 }
 
-.carousel-img {
+.banner-comment {
 
-    width: 100%;
-    object-fit: contain;
-    overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,48 +1,37 @@
+import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';
-import Slider from 'react-slick';
-import camera from '../../images/camera.jpg'
-import art from '../../images/art.jpg'
 import './Banner.css'
+import wall from '../../images/wall.jpg'
 import { Box } from '@mui/system';
-import { Grid } from '@mui/material';
 
 const Banner = () => {
-
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    }
-
     return (
-        <div className='carousel-parent'>
-            <Slider {...settings}>
-                <Grid container className='carousel-container'>
-                    <Grid item>
-                        <Box >
-                            <img className='carousel-img' src={camera} alt="" />
-                        </Box>
-                    </Grid>
-                    <Grid item>
-                        
-                    </Grid>
+        <Box sx={{
+            backgroundImage: `url(${wall})`
+        }} className='banner-container'>
+            <Grid container className='banner-overlay'>
+
+                <Grid item xs={6} className='banner-comment'>
+                    <Box>
+                        <Typography variant='h2' sx={{ color: 'white' }}>
+                            Sell your art and live your dreams!
+                        </Typography>
+
+                        <Typography variant='body' sx={{ color: 'white' }}>
+                            Sell your art and live your dreams!
+                        </Typography>
+                    </Box>
                 </Grid>
 
-                <Grid container className='carousel-container'>
-                    <Grid item>
-                        <Box >
-                            <img className='carousel-img' src={camera} alt="" />
-                        </Box>
-                    </Grid>
-                    <Grid item>
-                        
-                    </Grid>
-                </Grid>
+                <Grid item xs={6}>
 
-            </Slider>
-        </div >
+                    <Button>
+                        Explore
+                    </Button>
+
+                </Grid>
+            </Grid>
+        </Box>
     );
 };
 
