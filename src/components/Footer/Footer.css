@@ -1,0 +1,17 @@
+.footer {
+
+    background: #222;
+    padding: 5% 2% 1% 5%;
+}
+
+.footer-texts {
+
+    text-decoration: none;
+    color: #999;
+}
+
+.footer-copy {
+
+    text-align: center;
+    color: #999
+}

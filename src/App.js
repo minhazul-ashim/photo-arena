@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Footer from './components/Footer/Footer';
 import Navigation from './components/Navigation/Navigation';
 import Home from './pages/Home/Home';
 
@@ -21,6 +22,7 @@ function App() {
         </Route>
 
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
