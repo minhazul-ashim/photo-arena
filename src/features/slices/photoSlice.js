@@ -4,7 +4,7 @@ import photos from '../../fakedata/photos.json'
 const initialState = {
 
     explore: photos,
-    selected: {}
+    selected: null
 }
 
 const photoSlice = createSlice({
@@ -22,6 +22,6 @@ const photoSlice = createSlice({
 })
 
 
-export const {loadAll, loadSelection} = photoSlice.actions;
+export const { loadAll, loadSelection } = photoSlice.actions;
 
 export default photoSlice.reducer;

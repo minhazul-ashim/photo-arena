@@ -1,15 +1,26 @@
 import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Banner from './components/Banner/Banner';
 import Navigation from './components/Navigation/Navigation';
-import PhotoContainer from './components/PhotoGallery/PhotosContainer/PhotoContainer';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
     <div className="App">
+
       <Navigation></Navigation>
-      <Banner></Banner>
-      <PhotoContainer></PhotoContainer>
+
+      <Routes>
+
+        <Route path='/*' element={<Navigate to={'/home'} />}>
+
+        </Route>
+
+        <Route path='/home' element={<Home></Home>}>
+
+        </Route>
+
+      </Routes>
     </div>
   );
 }
