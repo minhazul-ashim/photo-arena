@@ -10,6 +10,12 @@
     color: #999;
 }
 
+.footer-texts:hover {
+
+    color: 'blue' !important;
+    cursor: pointer;
+}
+
 .footer-copy {
 
     text-align: center;

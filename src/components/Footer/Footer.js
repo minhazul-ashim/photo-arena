@@ -28,7 +28,7 @@ const Footer = () => {
 
                     </Grid>
 
-                    <Grid item xs={12} md={5}>
+                    <Grid item xs={6} md={5}>
                         <List>
                             <ListItem>
                                 <ListItemText className='footer-texts'>
@@ -59,7 +59,7 @@ const Footer = () => {
                         </List>
                     </Grid>
 
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={6} md={4}>
 
                         <List>
                             <ListItem>

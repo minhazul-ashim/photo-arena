@@ -10,7 +10,9 @@ const PhotoContainer = () => {
 
 
     return (
-        <Container>
+        <Container sx={{
+            mt: '5%'
+        }}>
             <Typography variant='h3'>
                 Photo Corner
             </Typography>

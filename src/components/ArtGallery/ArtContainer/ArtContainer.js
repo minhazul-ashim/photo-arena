@@ -10,7 +10,9 @@ const ArtContainer = () => {
 
 
     return (
-        <Container>
+        <Container sx={{
+            my: '5%'
+        }}>
             <Typography variant='h3'>
                 Photo Corner
             </Typography>
