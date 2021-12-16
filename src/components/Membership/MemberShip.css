@@ -1,0 +1,16 @@
+.member-container {
+
+    margin: 8% 0;
+    background-image: url(../../images/user-bg.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-x: 70%;
+}
+
+.memberContainer-overlay {
+
+    padding: 15% 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.555);
+}
