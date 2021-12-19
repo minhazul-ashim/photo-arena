@@ -14,7 +14,7 @@ export default function Navigation() {
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const { googleSignIn, user, logOut } = useAuth()
+    const { user, logOut } = useAuth()
 
     const navigate = useNavigate()
 
@@ -24,7 +24,6 @@ export default function Navigation() {
 
     const handleDrawer = () => {
 
-        console.log('drawer should be opened')
         navigate('/dashboard')
     }
 
@@ -45,7 +44,7 @@ export default function Navigation() {
                     display: 'flex',
                     justifyContent: 'space-between'
                 }}>
-                    <Box>
+                    <Box onClick={() => navigate('/home')}>
                         <img src={logo} alt="" width='40px' />
                     </Box>
                     {auth && (
@@ -75,7 +74,7 @@ export default function Navigation() {
 
                             {
                                 !user ?
-                                    <Button onClick={()=> navigate('/login')} variant='outlined' sx={{
+                                    <Button onClick={() => navigate('/login')} variant='outlined' sx={{
                                         mx: '6px'
                                     }}>
                                         Log in

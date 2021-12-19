@@ -6,7 +6,7 @@ import logo from '../../images/logo.png'
 import { BsGoogle } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
 
     const { googleSignIn } = useAuth();
 
@@ -20,21 +20,17 @@ const Login = () => {
 
                 <Box>
                     <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
-                        <TextField label="Your Email" variant="outlined" sx={{ my: '2%' }} />
-
+                        <TextField label="Your Full Name" variant="outlined" sx={{ my: '2%' }} />
+                        <TextField label="Your Email Address" variant="outlined" sx={{ my: '2%' }} />
                         <TextField label="Enter Password" variant="outlined" type='password' sx={{ my: '2%' }} />
-
                         <Button type='submit' variant='outlined'>
-                            Log in
+                            Register
                         </Button>
-
                         <Typography>
-                            <Link to='/register'>Need Registration?</Link>
+                            <Link to='/login'>Already have an account?</Link>
                         </Typography>
-
                         <Button onClick={googleSignIn} variant='outlined' sx={{ my: '3%', color: 'tomato', borderColor: 'tomato' }}>
-                            <BsGoogle />oogle Log in
+                           <BsGoogle />oogle Log in
                         </Button>
                     </form>
 
@@ -48,4 +44,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
