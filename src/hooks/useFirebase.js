@@ -9,6 +9,7 @@ const useFirebase = () => {
     const auth = getAuth();
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     const googleSignIn = (from, navigate) => {
 
@@ -23,6 +24,7 @@ const useFirebase = () => {
             .catch(error => setError(error.message))
             .finally(() => {
                 navigate(from, { replace: true })
+                setLoading(false)
             })
     }
 
@@ -54,9 +56,11 @@ const useFirebase = () => {
 
             if (user) {
                 setUser(user)
+                setLoading(false)
             }
             else {
                 setUser(null)
+                setLoading(false)
             }
         })
     }, [])
@@ -65,7 +69,8 @@ const useFirebase = () => {
         user,
         error,
         googleSignIn,
-        logOut
+        logOut,
+        loading
     };
 };
 
