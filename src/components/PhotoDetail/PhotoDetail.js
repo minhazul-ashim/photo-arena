@@ -6,6 +6,9 @@ import DialogContent from '@mui/material/DialogContent';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
+import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import useAuth from '../../hooks/useAuth';
 
 export default function PhotoDetail({ open, setOpen }) {
 
@@ -15,6 +18,8 @@ export default function PhotoDetail({ open, setOpen }) {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const { user } = useAuth()
 
     const selected = useSelector(state => state.photo.selected)
 
@@ -31,18 +36,26 @@ export default function PhotoDetail({ open, setOpen }) {
                 <DialogContent>
 
                     <img target='__blank' src={selected?.url} alt="" style={{ width: '100%', objectFit: 'cover' }} />
-                    
+
                 </DialogContent>
 
                 <DialogActions>
 
-                    <Button>
-                        Download
-                    </Button>
+                    {
+                        user ?
+                            <Box>
+                                <Button>
+                                    Download
+                                </Button>
 
-                    <Button>
-                        Add to Collection
-                    </Button>
+                                <Button>
+                                    Add to Collection
+                                </Button>
+                            </Box> :
+                            <Typography>
+                                Login to Download
+                            </Typography>
+                    }
 
                     <Button onClick={handleClose}>
                         Close
