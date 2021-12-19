@@ -13,7 +13,8 @@ import { Button } from '@mui/material';
 export default function MenuAppBar() {
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const { googleSignIn, user } = useAuth()
+
+    const { googleSignIn, user, logOut } = useAuth()
 
     const navigate = useNavigate()
 
@@ -35,8 +36,6 @@ export default function MenuAppBar() {
         setAnchorEl(null);
     };
 
-    console.log(user)
-
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{
@@ -50,21 +49,43 @@ export default function MenuAppBar() {
                         <img src={logo} alt="" width='40px' />
                     </Box>
                     {auth && (
-                        <Box>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                color="inherit"
-                            >
-                                <AccountCircle />
-                            </IconButton>
+                        <Box sx={{
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}>
+                            {
+                                !user ?
+                                    <IconButton
+                                        size="large"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        onClick={handleMenu}
+                                        color="inherit"
+                                    >
+                                        <AccountCircle />
+                                    </IconButton> :
+                                    <Box>
+                                        <img src={user?.photoURL} alt="profilepicture" style={{
+                                            width: '40px', height: '40px',
+                                            borderRadius: '50%'
+                                        }} />
+                                    </Box>
+                            }
 
-                            <Button onClick={googleSignIn} variant='outlined'>
-                                Log in
-                            </Button>
+                            {
+                                !user ?
+                                    <Button onClick={googleSignIn} variant='outlined' sx={{
+                                        mx: '6px'
+                                    }}>
+                                        Log in
+                                    </Button> :
+                                    <Button onClick={logOut} variant='outlined' sx={{
+                                        mx: '6px'
+                                    }}>
+                                        Log out
+                                    </Button>
+                            }
 
                             <IconButton
                                 size="large"
