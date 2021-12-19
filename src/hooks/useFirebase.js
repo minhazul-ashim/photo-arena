@@ -15,21 +15,41 @@ const useFirebase = () => {
         const googleProvider = new GoogleAuthProvider();
 
         signInWithPopup(auth, googleProvider)
-            .then(result => setUser(result.user))
+            .then(result => {
+
+                setUser(result.user);
+                saveAndFindUsers(result.user.email, result.user.displayName, 'PUT');
+            })
             .catch(error => setError(error.message))
     }
 
     const logOut = () => {
 
         signOut(auth)
-            .then(console.log('signed out'))
+            .then({})
+    }
+
+    const saveAndFindUsers = (email, name = '', method) => {
+
+        const user = { name: name, email: email }
+        console.log('saveAndFindUsers')
+
+        fetch(`http://localhost:5000/users`, {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => { })
     }
 
     useEffect(() => {
 
         onAuthStateChanged(auth, (user) => {
 
-            if(user) {
+            if (user) {
                 setUser(user)
             }
             else {

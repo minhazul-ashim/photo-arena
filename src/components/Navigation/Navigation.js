@@ -37,7 +37,7 @@ export default function Navigation() {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{
+            <AppBar position="fixed" sx={{
                 background: '#333'
             }}>
                 <Toolbar sx={{

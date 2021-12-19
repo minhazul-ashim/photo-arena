@@ -9,12 +9,15 @@ import List from '@mui/material/List';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import useAuth from '../../hooks/useAuth';
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const {user} = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -53,9 +56,11 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            {user?.displayName}
           </Typography>
+          
         </Toolbar>
       </AppBar>
       <Box
