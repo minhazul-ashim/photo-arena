@@ -7,10 +7,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import logo from '../../images/logo.png'
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import { Button } from '@mui/material';
 
 export default function MenuAppBar() {
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const { googleSignIn, user } = useAuth()
 
     const navigate = useNavigate()
 
@@ -31,6 +34,8 @@ export default function MenuAppBar() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    console.log(user)
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -57,15 +62,19 @@ export default function MenuAppBar() {
                                 <AccountCircle />
                             </IconButton>
 
+                            <Button onClick={googleSignIn} variant='outlined'>
+                                Log in
+                            </Button>
+
                             <IconButton
                                 size="large"
                                 edge="start"
                                 color="inherit"
                                 aria-label="menu"
                                 sx={{ mr: 2 }}
-                                onClick={handleDrawer} 
+                                onClick={handleDrawer}
                             >
-                                <MenuIcon/>
+                                <MenuIcon />
                             </IconButton>
                         </Box>
                     )}
