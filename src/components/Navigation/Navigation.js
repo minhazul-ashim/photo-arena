@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { Button } from '@mui/material';
 
-export default function MenuAppBar() {
+export default function Navigation() {
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -75,7 +75,7 @@ export default function MenuAppBar() {
 
                             {
                                 !user ?
-                                    <Button onClick={googleSignIn} variant='outlined' sx={{
+                                    <Button onClick={()=> navigate('/login')} variant='outlined' sx={{
                                         mx: '6px'
                                     }}>
                                         Log in

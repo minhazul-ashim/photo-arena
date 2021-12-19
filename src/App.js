@@ -4,6 +4,7 @@ import './App.css';
 import Dashboard from './components/Dashboard/Dashboard';
 import Navigation from './components/Navigation/Navigation';
 import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
         </Route>
 
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+
+        </Route>
+
+        <Route path='/login' element={<Login></Login>}>
 
         </Route>
 
