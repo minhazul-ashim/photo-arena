@@ -10,7 +10,7 @@ const useFirebase = () => {
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
 
-    const googleSignIn = () => {
+    const googleSignIn = (from, navigate) => {
 
         const googleProvider = new GoogleAuthProvider();
 
@@ -21,6 +21,9 @@ const useFirebase = () => {
                 saveAndFindUsers(result.user.email, result.user.displayName, 'PUT');
             })
             .catch(error => setError(error.message))
+            .finally(() => {
+                navigate(from, { replace: true })
+            })
     }
 
     const logOut = () => {

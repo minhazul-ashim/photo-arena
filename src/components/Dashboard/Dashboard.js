@@ -66,7 +66,7 @@ function Dashboard(props) {
             <MdOutlineCollections />
           </ListItemIcon>
           <ListItemText>
-            Log out
+            Log Out
           </ListItemText>
         </ListItem>
 

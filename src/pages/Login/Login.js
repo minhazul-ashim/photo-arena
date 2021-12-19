@@ -4,11 +4,17 @@ import Footer from '../../components/Footer/Footer';
 import useAuth from '../../hooks/useAuth';
 import logo from '../../images/logo.png'
 import { BsGoogle } from 'react-icons/bs'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
     const { googleSignIn } = useAuth();
+
+    const location = useLocation();
+
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/'
 
     return (
         <>
@@ -33,7 +39,7 @@ const Login = () => {
                             <Link to='/register'>Need Registration?</Link>
                         </Typography>
 
-                        <Button onClick={googleSignIn} variant='outlined' sx={{ my: '3%', color: 'tomato', borderColor: 'tomato' }}>
+                        <Button onClick={() => googleSignIn(from, navigate)} variant='outlined' sx={{ my: '3%', color: 'tomato', borderColor: 'tomato' }}>
                             <BsGoogle />oogle Log in
                         </Button>
                     </form>
