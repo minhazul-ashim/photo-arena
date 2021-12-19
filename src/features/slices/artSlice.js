@@ -1,11 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
-import artworks from '../../fakedata/artworks.json'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
 
-    explore: artworks,
+    explore: [],
     selected: null
 }
+
+export const fetchArts = createAsyncThunk(
+    'arts/fetchArts',
+    async () => {
+
+        const response = await fetch(`http://localhost:5000/artworks`)
+            .then(res => res.json())
+
+        return response;
+    }
+)
 
 const artSlice = createSlice({
     name: 'photo',
@@ -13,12 +23,20 @@ const artSlice = createSlice({
 
     reducers: {
         loadAll: (state, action) => {
-            state.explore = artworks;
+            state.explore = state.explore;
         },
         loadSelection: (state, action) => {
             state.selected = action.payload
         },
     },
+
+    extraReducers: (builder) => {
+
+        builder.addCase(fetchArts.fulfilled, (state, action) => {
+
+            state.explore = action.payload
+        })
+    }
 })
 
 
