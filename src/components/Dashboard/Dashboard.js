@@ -10,6 +10,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import useAuth from '../../hooks/useAuth';
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { MdOutlineCollections } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -17,7 +20,9 @@ function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const {user} = useAuth();
+  const navigate = useNavigate();
+
+  const { user } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -28,6 +33,42 @@ function Dashboard(props) {
       <Toolbar />
       <Divider />
       <List>
+
+        <ListItem>
+          <ListItemIcon>
+            <MdOutlineCollections />
+          </ListItemIcon>
+          <ListItemText>
+            My Profile
+          </ListItemText>
+        </ListItem>
+
+        <ListItem>
+          <ListItemIcon>
+            <MdOutlineCollections />
+          </ListItemIcon>
+          <ListItemText>
+            My Collection
+          </ListItemText>
+        </ListItem>
+
+        <ListItem>
+          <ListItemIcon>
+            <MdOutlineCollections />
+          </ListItemIcon>
+          <ListItemText>
+            Payment
+          </ListItemText>
+        </ListItem>
+
+        <ListItem>
+          <ListItemIcon>
+            <MdOutlineCollections />
+          </ListItemIcon>
+          <ListItemText>
+            Log out
+          </ListItemText>
+        </ListItem>
 
       </List>
       <Divider />
@@ -60,7 +101,7 @@ function Dashboard(props) {
           <Typography variant="h6" noWrap component="div">
             {user?.displayName}
           </Typography>
-          
+
         </Toolbar>
       </AppBar>
       <Box

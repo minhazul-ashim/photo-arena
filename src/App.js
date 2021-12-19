@@ -6,6 +6,7 @@ import Navigation from './components/Navigation/Navigation';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
 
         </Route>
 
-        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+        <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>}>
 
         </Route>
 
