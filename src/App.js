@@ -37,7 +37,7 @@ function App() {
 
           </Route>
 
-          <Route path='/dashboard/collections' element={<CollectionPage></CollectionPage>}>
+          <Route path='/dashboard/' element={<CollectionPage></CollectionPage>}>
 
           </Route>
 
