@@ -20,6 +20,7 @@ export default function PhotoDetail({ open, setOpen }) {
 
     return (
         <div>
+
             <Dialog
                 fullScreen={fullScreen}
                 open={open}
@@ -28,18 +29,28 @@ export default function PhotoDetail({ open, setOpen }) {
             >
 
                 <DialogContent>
+
                     <img target='__blank' src={selected?.url} alt="" style={{ width: '100%', objectFit: 'cover' }} />
+                    
                 </DialogContent>
 
                 <DialogActions>
+
                     <Button>
                         Download
                     </Button>
+
+                    <Button>
+                        Add to Collection
+                    </Button>
+
                     <Button onClick={handleClose}>
                         Close
                     </Button>
+
                 </DialogActions>
             </Dialog>
+
         </div>
     );
 }
