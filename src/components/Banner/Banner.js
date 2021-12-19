@@ -23,10 +23,19 @@ const Banner = () => {
                     </Box>
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={6} sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
 
-                    <Button>
+                    <Button variant='contained' sx={{ mb: '5%' }}>
                         Explore
+                    </Button>
+
+                    <Button variant='contained'>
+                        Contact
                     </Button>
 
                 </Grid>

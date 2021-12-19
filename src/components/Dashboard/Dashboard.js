@@ -13,6 +13,7 @@ import useAuth from '../../hooks/useAuth';
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { MdOutlineCollections } from 'react-icons/md'
 import { Outlet, useNavigate } from 'react-router-dom';
+import {FaHome, FaMoneyBill, FaSignOutAlt, FaUser} from 'react-icons/fa'
 
 const drawerWidth = 240;
 
@@ -35,9 +36,18 @@ function Dashboard(props) {
       <Divider />
       <List>
 
+        <ListItem onClick={() => navigate('/')}>
+          <ListItemIcon>
+            <FaHome />
+          </ListItemIcon>
+          <ListItemText>
+            Home
+          </ListItemText>
+        </ListItem>
+
         <ListItem onClick={() => navigate('/dashboard/profile')}>
           <ListItemIcon>
-            <MdOutlineCollections />
+            <FaUser />
           </ListItemIcon>
           <ListItemText>
             My Profile
@@ -53,9 +63,9 @@ function Dashboard(props) {
           </ListItemText>
         </ListItem>
 
-        <ListItem onClick={() => navigate('/dashboard/payment') }>
+        <ListItem onClick={() => navigate('/dashboard/payment')}>
           <ListItemIcon>
-            <MdOutlineCollections />
+            <FaMoneyBill />
           </ListItemIcon>
           <ListItemText>
             Payment
@@ -64,7 +74,7 @@ function Dashboard(props) {
 
         <ListItem onClick={logOut}>
           <ListItemIcon>
-            <MdOutlineCollections />
+            <FaSignOutAlt />
           </ListItemIcon>
           <ListItemText>
             Log Out
