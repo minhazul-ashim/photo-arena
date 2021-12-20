@@ -13,7 +13,7 @@ import useAuth from '../../hooks/useAuth';
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { MdOutlineCollections } from 'react-icons/md'
 import { Outlet, useNavigate } from 'react-router-dom';
-import {FaHome, FaMoneyBill, FaSignOutAlt, FaUser} from 'react-icons/fa'
+import {FaHome, FaMoneyBill, FaSignOutAlt, FaUser, FaPlusSquare} from 'react-icons/fa'
 
 const drawerWidth = 240;
 
@@ -69,6 +69,15 @@ function Dashboard(props) {
           </ListItemIcon>
           <ListItemText>
             Payment
+          </ListItemText>
+        </ListItem>
+
+        <ListItem onClick={() => navigate('/dashboard/submit')}>
+          <ListItemIcon>
+            <FaPlusSquare />
+          </ListItemIcon>
+          <ListItemText>
+            Submit Photo
           </ListItemText>
         </ListItem>
 
@@ -151,8 +160,6 @@ function Dashboard(props) {
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
-        <Toolbar />
-
         <Outlet />
       </Box>
     </Box>

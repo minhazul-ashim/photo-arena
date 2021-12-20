@@ -1,11 +1,14 @@
-import { Container, Grid, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { fetchArts } from '../../../features/slices/artSlice';
 import PhotoBox from '../../PhotoGallery/PhotoBox/PhotoBox';
 import './ArtContainer.css'
+import { FaArrowRight } from 'react-icons/fa'
+import ArtBox from '../ArtBox/ArtBox';
 
-const ArtContainer = () => {
+const ArtContainer = ({ home }) => {
 
     const arts = useSelector((state) => state.art.explore);
 
@@ -16,6 +19,8 @@ const ArtContainer = () => {
         dispatch(fetchArts())
     }, [])
 
+    const navigate = useNavigate()
+
 
     return (
         <Container sx={{
@@ -25,19 +30,26 @@ const ArtContainer = () => {
                 Photo Corner
             </Typography>
 
-            <Grid container>
+            <Box xs={12} className='photos-grid'>
 
-                <Grid item xs={12} className='photos-grid'>
+                {
+                    home ?
 
-                    {
-                        arts.slice(0, 6).map(art => <PhotoBox
+                        arts.slice(0, 6).map(art => <ArtBox
+                            key={art._id} data={art}>
+                        </ArtBox>)
+                        :
+                        arts.map(art => <PhotoBox
                             key={art._id} data={art}>
                         </PhotoBox>)
-                    }
 
-                </Grid>
+                }
 
-            </Grid>
+            </Box>
+
+            <Button variant='outlined' onClick={() => navigate('/arts')}>
+                View All    <FaArrowRight />
+            </Button>
 
         </Container>
     );

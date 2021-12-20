@@ -10,6 +10,10 @@ import Register from './pages/Register/Register';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import CollectionPage from './components/CollectionPage/CollectionPage'
 import UserProfile from './components/UserProfile/UserProfile'
+import Contact from './pages/Contact/Contact';
+import PhotoSubmission from './components/PhotoSubmission/PhotoSubmission';
+import PhotoContainer from './components/PhotoGallery/PhotosContainer/PhotoContainer';
+import ArtContainer from './components/ArtGallery/ArtContainer/ArtContainer';
 
 function App() {
   return (
@@ -37,7 +41,11 @@ function App() {
 
           </Route>
 
-          <Route path='/dashboard/' element={<CollectionPage></CollectionPage>}>
+          <Route path='/dashboard/collections' element={<CollectionPage></CollectionPage>}>
+
+          </Route>
+
+          <Route path='/dashboard/submit' element={<PhotoSubmission></PhotoSubmission>}>
 
           </Route>
 
@@ -48,6 +56,18 @@ function App() {
         </Route>
 
         <Route path='/register' element={<Register></Register>}>
+
+        </Route>
+
+        <Route path='/contact' element={<Contact></Contact>}>
+
+        </Route>
+
+        <Route path='/photos' element={<PhotoContainer></PhotoContainer>}>
+
+        </Route>
+
+        <Route path='/arts' element={<ArtContainer></ArtContainer>}>
 
         </Route>
 

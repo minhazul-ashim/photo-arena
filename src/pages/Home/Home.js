@@ -9,8 +9,8 @@ const Home = () => {
     return (
         <>
             <Banner></Banner>
-            <PhotoContainer></PhotoContainer>
-            <ArtContainer></ArtContainer>
+            <PhotoContainer home={true}></PhotoContainer>
+            <ArtContainer home={true}></ArtContainer>
             <Membership></Membership>
             <Footer></Footer>
         </>

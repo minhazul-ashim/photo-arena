@@ -1,14 +1,37 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../../components/Footer/Footer';
 import useAuth from '../../hooks/useAuth';
 import logo from '../../images/logo.png'
 import { BsGoogle } from 'react-icons/bs'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
-    const { googleSignIn } = useAuth();
+    const { googleSignIn, userCreation } = useAuth();
+
+    const [information, setInformation] = useState({})
+
+    const navigate = useNavigate()
+
+    const handleBlur = (e) => {
+
+        const field = e.target.name;
+        const info = e.target.value;
+
+        const newInfo = { ...information }
+        newInfo[field] = info;
+
+        setInformation(newInfo)
+    }
+
+    const handleSubmit = (e) => {
+
+        const {email, name, password} = information;
+
+        userCreation(email, password, name, navigate)
+        e.preventDefault();
+    }
 
     return (
         <>
@@ -19,18 +42,23 @@ const Register = () => {
                 </Box>
 
                 <Box>
-                    <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <TextField label="Your Full Name" variant="outlined" sx={{ my: '2%' }} />
-                        <TextField label="Your Email Address" variant="outlined" sx={{ my: '2%' }} />
-                        <TextField label="Enter Password" variant="outlined" type='password' sx={{ my: '2%' }} />
+                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+                        <TextField label="Your Full Name" name='name' variant="outlined" sx={{ my: '2%' }} onBlur={handleBlur} />
+
+                        <TextField label="Your Email Address" name='email' variant="outlined" sx={{ my: '2%' }} onBlur={handleBlur} />
+
+                        <TextField label="Enter Password" name='password' variant="outlined" type='password' sx={{ my: '2%' }} onBlur={handleBlur} />
+
                         <Button type='submit' variant='outlined'>
                             Register
                         </Button>
+
                         <Typography>
                             <Link to='/login'>Already have an account?</Link>
                         </Typography>
                         <Button onClick={googleSignIn} variant='outlined' sx={{ my: '3%', color: 'tomato', borderColor: 'tomato' }}>
-                           <BsGoogle />oogle Log in
+                            <BsGoogle />oogle Log in
                         </Button>
                     </form>
 

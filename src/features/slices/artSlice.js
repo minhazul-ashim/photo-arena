@@ -10,7 +10,7 @@ export const fetchArts = createAsyncThunk(
     'arts/fetchArts',
     async () => {
 
-        const response = await fetch(`http://localhost:5000/artworks`)
+        const response = await fetch(`https://limitless-bastion-02273.herokuapp.com/artworks`)
             .then(res => res.json())
 
         return response;

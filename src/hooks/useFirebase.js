@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from 'firebase/auth'
 import authInitialize from '../firebase/firebase.init';
 
 authInitialize();
@@ -28,6 +28,37 @@ const useFirebase = () => {
             })
     }
 
+    const userCreation = (email, password, name, navigate) => {
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(res => {
+                saveAndFindUsers(email, name, 'POST')
+            })
+            .then(() => {
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                })
+            })
+            .catch(error => setError(error.message))
+            .finally(() => {
+                navigate('/home');
+                setLoading(false)
+            })
+    }
+
+    const manualSignIn = (email, password, from, navigate) => {
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then(result => {
+
+            })
+            .catch(error => setError(error.message))
+            .finally(() => {
+                navigate(from, { replace: true })
+                setLoading(false)
+            })
+    }
+
     const logOut = () => {
 
         signOut(auth)
@@ -37,9 +68,8 @@ const useFirebase = () => {
     const saveAndFindUsers = (email, name = '', method) => {
 
         const user = { name: name, email: email }
-        console.log('saveAndFindUsers')
 
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://limitless-bastion-02273.herokuapp.com/users`, {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -70,7 +100,9 @@ const useFirebase = () => {
         error,
         googleSignIn,
         logOut,
-        loading
+        userCreation,
+        manualSignIn,
+        loading,
     };
 };
 

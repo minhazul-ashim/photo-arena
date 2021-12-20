@@ -9,7 +9,7 @@ const initialState = {
 export const fetchBooks = createAsyncThunk(
     'books/fetchBooks',
     async () => {
-        const response = await fetch(`http://localhost:5000/photos`)
+        const response = await fetch(`https://limitless-bastion-02273.herokuapp.com/photos`)
             .then(res => res.json())
         return response
     }
