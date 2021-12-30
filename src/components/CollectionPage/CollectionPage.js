@@ -1,8 +1,8 @@
-import { Container, Grid, Typography } from '@mui/material';
+import { Button, Container, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUserCollections } from '../../features/slices/userDataSlice';
+import { deleteArt, deletePhoto, fetchUserCollections } from '../../features/slices/userDataSlice';
 import useAuth from '../../hooks/useAuth';
 
 const CollectionPage = () => {
@@ -12,12 +12,24 @@ const CollectionPage = () => {
     const email = user?.email;
 
     const userPhotos = useSelector(state => state.user.userPhotoCollections);
-    const userArts = useSelector(state => state.user.userArtCollections)
+    const userArts = useSelector(state => state.user.userArtCollections);
 
-    useEffect(() => {
+    const collectUserData = () => {
 
         dispatch(fetchUserCollections(email))
-    }, [])
+    }
+
+    const handleDelete = (collection, email, data) => {
+
+        if (collection === 'PHOTO') {
+            dispatch(deletePhoto({ email, data }))
+        } else if (collection === 'ART') {
+            dispatch(deleteArt({ email, data }))
+        }
+        collectUserData()
+    }
+
+    useEffect(collectUserData, [])
 
     return (
         <Container>
@@ -33,14 +45,22 @@ const CollectionPage = () => {
                         </Typography>
                 }
 
-                <Grid container>
+                <Grid container spacing={2}>
 
                     {
                         userPhotos?.map(photo => {
                             return (
-                                <Grid key={photo._id} item xs={6} md={4} lg={3} gap={1}>
-                                    <Box sx={{ m: '2%', height: '100%' }}>
-                                        <img src={photo.url} alt='' style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <Grid key={photo._id} item xs={6} md={4} lg={3}>
+                                    <Box sx={{ height: '100%' }}>
+                                        <img src={photo.url} alt='' style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                    </Box>
+                                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <Button variant='contained' onClick={() => handleDelete('PHOTO', email, photo)}>
+                                            Delete
+                                        </Button>
+                                        <Button variant='contained'>
+                                            Download
+                                        </Button>
                                     </Box>
                                 </Grid>
                             )
@@ -61,14 +81,22 @@ const CollectionPage = () => {
                         </Typography>
                 }
 
-                <Grid container>
+                <Grid container spacing={6}>
 
                     {
                         userArts?.map(art => {
                             return (
                                 <Grid key={art._id} item xs={6} md={4} lg={3}>
-                                    <Box sx={{ m: '2%', height: '100%' }}>
-                                        <img src={art.url} alt='' style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    <Box sx={{ height: '100%' }}>
+                                        <img src={art.url} alt='' style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                    </Box>
+                                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <Button variant='contained' onClick={() => handleDelete('ART', email, art)}>
+                                            Delete
+                                        </Button>
+                                        <Button variant='contained'>
+                                            Download
+                                        </Button>
                                     </Box>
                                 </Grid>
                             )
